@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Well Finder</title>
+<h1>*** ON TEST SERVER **** Well Finder - Search for well and get Google Maps Link</h1>
+<p><b>Updated: 02/2020</b></p>
+<p><i>Searches California DOGGR Database for wellname and returns location </i></p>
+<p><i>Text HERE</i></p>
+<h3>Enter Wellname to find location</h3>
+
+<form action="" method=post enctype=multipart/form-data onsubmit="return submitForm(this);">
+    <p>Wellname: <input type=text name="wellname"
+                               placeholder="e.g. 17E-35R"
+                               size="100" required></p>
+
+<!--<h3>Optional: keywords to extract (comma to separate words), and suffix. </h3>-->
+
+<!--    <p>Keywords: <input type=text name="keywords"-->
+<!--                        value="effective depth, PICKUP DEPTH, PICK-UP, Logger Depth, Packer, TOP PERF LEAKING UP TO, TUBING PSI, tbg press:, Inj. Press - PSI, OBSERVED RATE, RATE, INJECTION RATE, lnj. Rate - B/D, METER RATE SURVEY RATE, Topko rate:, TEMPERATURE, AT DEPTH, perfs"-->
+<!--                        size="100" required></p>-->
+<!--    <p>Search Suffix: <input type=text name="suffix" value="*" required></p>-->
+    <h3>Submit to server</h3>
+    <p><input type="submit" id="button" value=Submit></p>
+</form>
+<i>Contacts: Data Scientist - <a href="mailto:david.nguyen@crc.com">David Nguyen</a></i>
+<script type="text/javascript">
+    function submitForm(form) {
+        form.button.disabled = true;
+        form.button.value = "Please wait...";
+    }
+
+</script>
+</html>
