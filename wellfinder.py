@@ -11,7 +11,7 @@ pd.set_option('display.max_colwidth', None)
 
 # well = '41-31R'
 
-def flaskentrypoint(path, wellname):
+def wellnav(path, wellname):
     """
 
     :param path: path of csv file
@@ -26,15 +26,14 @@ def flaskentrypoint(path, wellname):
     latlong = '{0},{1}'.format(lat, long).lstrip()
     logging.debug('lat:%s' % latlong)
 
-    map_link = urljoin('https://www.google.com/maps/dir/', '?api=1&destination={0}'.format(latlong))
-    # map_link = df.loc[df['WellNumber'].str.lower() == wellname.lower(), 'Google Maps Link']
-    logging.debug('maplink %s' % map_link)
+    maplink = urljoin('https://www.google.com/maps/dir/', '?api=1&destination={0}'.format(latlong))
+    logging.debug('map link is %s' % maplink)
 
-    # NEED TO ADD EXCEPTION FOR WELL doesn't exist
+    return maplink
 
-    return map_link
 
-""" FLASK PORTION OF CODE"""
+""" FLASK PORTION OF CODE """
+
 
 app = Flask(__name__)
 
@@ -54,15 +53,16 @@ def wellfinder():
         logging.debug('inputs: {}'.format(wellname))
         try:
             path = 'AllWells.csv'
-            maplink = flaskentrypoint(path, wellname)
-            return render_template('results.html', maplink=maplink)
+            navresult = wellnav(path, wellname)
+            if navresult == 'https://www.google.com/maps/dir/?api=1&destination=Series([], ),Series([], )':
+                error = 'Invalid Well Name. Please try again!'
+                return render_template('wellfinder.html', error=error)
+            else:
+                return render_template('results.html', navresult=navresult)
         except Exception as e:
             traceback.print_exc()
             abort(500, str(e))
 
 if __name__ == '__main__':
     app.run()
-    # path = 'AllWells.csv'
-    # wellname = '41-31R'
-    # maplink = flaskentrypoint(path, wellname)
-    # print(maplink.to_string(index=False))
+

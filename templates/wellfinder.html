@@ -4,7 +4,7 @@
 <h1>*** ON TEST SERVER **** Well Finder - Search for well and get Google Maps Link</h1>
 <p><b>Updated: 02/2020</b></p>
 <p><i>Searches California DOGGR Database for wellname and returns location </i></p>
-<p><i>Text HERE</i></p>
+<p><i></i></p>
 <h3>Enter Wellname to find location</h3>
 
 <form action="" method=post enctype=multipart/form-data onsubmit="return submitForm(this);">
@@ -21,7 +21,13 @@
     <h3>Submit to server</h3>
     <p><input type="submit" id="button" value=Submit></p>
 </form>
-<i>Contacts: Data Scientist - <a href="mailto:david.nguyen@crc.com">David Nguyen</a></i>
+
+{% if error %}
+         <p><strong>Error:</strong> {{ error }}
+      {% endif %}</p>
+
+
+<p><i>Contacts: Data Scientist - <a href="mailto:david.nguyen@crc.com">David Nguyen</a></i></p>
 <script type="text/javascript">
     function submitForm(form) {
         form.button.disabled = true;
