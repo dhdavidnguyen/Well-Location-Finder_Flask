@@ -8,6 +8,9 @@ logging.basicConfig(level=logging.DEBUG, format=' %(asctime)s - %(levelname)s - 
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_colwidth', None)
 
+"""Has issue with multiple instances of well name. Need to throw exception and add additional search criteria"""
+
+
 
 # well = '41-31R'
 
